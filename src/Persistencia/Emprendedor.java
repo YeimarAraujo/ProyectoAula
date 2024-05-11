@@ -42,15 +42,12 @@ public class Emprendedor extends Cuenta {
         this.productos = productos;
     }
 
-    public void agregarProducto(String codigo,String nombre, double precio, String descripcion) {
-        Producto nuevoProducto = new Producto(codigo, nombre, precio, descripcion);
-        productos.add(nuevoProducto);
+    public void agregarProducto(Producto producto) {
+        productos.add(producto);
     }
 
-    public void eliminarProducto(String codigo) {
-        productos.removeIf(p -> {
-            return p.getCodigo().equals(codigo);
-        });
+    public void eliminarProducto(Producto codigo) {
+        productos.remove(codigo);
     }
 
     public void agregarReseña(Reseña reseña) {
@@ -76,9 +73,9 @@ public class Emprendedor extends Cuenta {
     public void agregarEmprendimiento(Emprendimiento emprendimiento) {
         emprendimientos.add(emprendimiento);
     }
-    public Emprendimiento buscarEmprendimiento(String nombre) {
+    public Emprendimiento buscarEmprendimiento(Emprendimiento nombreEmprendimiento) {
         for (Emprendimiento emp : emprendimientos) {
-            if (emp.getNombreEmprendimiento().equals(nombre)) {
+            if (emp.getNombreEmprendimiento().equals(nombreEmprendimiento)) {
                 return emp;
             }
         }

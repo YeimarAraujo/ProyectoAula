@@ -162,13 +162,12 @@ public class Menu {
             System.out.print("Ingrese el código del producto: ");
             String codigo = scanner.nextLine();
 
-            Producto producto = null;
-            for (Emprendimiento emp : emprendimientos.values()) {
-                producto = emp.buscarProductoPorCodigo(codigo);
-                if (producto != null) {
-                    break;
-                }
-            }
+            Producto producto = Producto.buscarPorCodigo(codigo);
+        if (producto != null) {
+            System.out.println("Producto encontrado por código " + codigo + ": " + producto.getNombre());
+        } else {
+            System.out.println("Producto con código " + codigo + " no encontrado.");
+        }
 
             if (producto != null) {
                 System.out.println("Producto encontrado: " + producto);
@@ -228,7 +227,7 @@ public class Menu {
         System.out.print("Ingrese el nombre del emprendimiento: ");
         String nombreEmprendimiento = scanner.nextLine();
 
-        Emprendimiento emprendimiento = emprendimientos.get(nombreEmprendimiento);
+        Emprendimiento emprendimiento = new Emprendimiento(nombreEmprendimiento);
 
         if (emprendimiento != null) {
             System.out.println("Emprendimiento encontrado: " + emprendimiento.getNombreEmprendimiento());
@@ -346,25 +345,25 @@ public class Menu {
 
         System.out.print("Descripción: ");
         String descripcion = scanner.nextLine();
-        Producto producto = new Producto(codigo, nombre, precio, descripcion);
-        emprendedor.agregarProducto(codigo, nombre, precio, descripcion);
+        
         if (tipoProducto.equalsIgnoreCase("servicio")) {
-            producto = new Servicio(codigo, nombre, precio, descripcion);
+            Producto producto = new Servicio(codigo, nombre, precio, descripcion);
+            emprendedor.agregarProducto(producto);
         } else if(tipoProducto.equalsIgnoreCase("producto")) {
-            producto = new Producto(codigo, nombre, precio, descripcion);
+            Producto producto = new Producto(codigo, nombre, precio, descripcion);
+            emprendedor.agregarProducto(producto);
         }
-
+        
     }
-
     private void eliminarProducto(Scanner scanner, Emprendedor emprendedor) {
         System.out.println("");
         System.out.print("Ingrese el código del producto a eliminar: ");
-        String código = scanner.nextLine();
+        String codigo = scanner.nextLine();
 
-        Emprendimiento emprendimiento = emprendimientos.get(emprendedor.getUsername());
+        Producto producto= new Producto(codigo); 
 
-        if (emprendimiento != null) {
-            emprendimiento.eliminarProducto(código);
+        if (producto!= null) {
+            emprendedor.eliminarProducto(producto);
             System.out.println("Producto eliminado con éxito.");
         } else {
             System.out.println(" no encontrado.");

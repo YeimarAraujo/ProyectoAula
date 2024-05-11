@@ -37,12 +37,15 @@ public class Reseña {
     public String toString() {
         return "Reseña" + 
                 "Descripcion=" + descripcion + 
+                "Calificacion=" + calificacion + 
                 "Fecha=" + fecha + '}';
     }
 
     public void add(Reseña reseña) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+
 
     
 }

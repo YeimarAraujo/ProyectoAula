@@ -21,6 +21,10 @@ public class Emprendimiento{
         this.direccion = direccion;
     }
 
+    public Emprendimiento(String nombreEmprendimiento) {
+        this.nombreEmprendimiento = nombreEmprendimiento;
+    }
+    
     public String getNombreEmprendimiento() {
         return nombreEmprendimiento;
     }
@@ -44,26 +48,7 @@ public class Emprendimiento{
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-     public void eliminarProducto(String codigo) {
-        productos.removeIf(p -> {
-            return p.getCodigo().equals(codigo);
-        });
-    }
-        public Producto buscarProductoPorNombre(String nombre) {
-        for (Producto producto : productos) {
-            if (producto.getNombre().equalsIgnoreCase(nombre)) {
-                return producto;
-            }
-        }
-        return null; 
-    }
-
-    public Producto buscarProductoPorCodigo(String codigo) {
-        for (Producto producto : productos) {
-            if (producto.getCodigo().equalsIgnoreCase(codigo)) {
-                return producto;
-            }
-        }
-        return null; 
+     public void eliminarProducto(Producto codigo) {
+        productos.remove(codigo);
     }
     }

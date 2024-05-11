@@ -4,15 +4,15 @@
  */
 package Presentacion;
 
+import Datos.Cuenta;
+import Datos.Servicio;
+import Datos.Reseña;
+import Persistencia.Producto;
 import Persistencia.Cliente;
 import Persistencia.Emprendedor;
-import Logica.Emprendimiento;
-import Logica.Producto;
-import Logica.RegistroReseñas;
-import Logica.Reseña;
-import Logica.Servicio;
-import Persistencia.RegistrosUsuarios;
-import Persistencia.Cuenta;
+import Persistencia.Emprendimiento;
+import Persistencia.RegistroReseñas;
+import Datos.RegistrosUsuarios;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -162,20 +162,20 @@ public class Menu {
             System.out.print("Ingrese el código del producto: ");
             String codigo = scanner.nextLine();
 
-            Producto productoEncontrado = null;
+            Producto producto = null;
             for (Emprendimiento emp : emprendimientos.values()) {
-                productoEncontrado = emp.buscarProductoPorCodigo(codigo);
-                if (productoEncontrado != null) {
+                producto = emp.buscarProductoPorCodigo(codigo);
+                if (producto != null) {
                     break;
                 }
             }
 
-            if (productoEncontrado != null) {
-                System.out.println("Producto encontrado: " + productoEncontrado);
+            if (producto != null) {
+                System.out.println("Producto encontrado: " + producto);
                 System.out.println("");
                 System.out.println("¿Deseas dejar una reseña? (s/n)");
                 if (scanner.nextLine().equalsIgnoreCase("s")) {
-                    dejarReseña(scanner, productoEncontrado);
+                    dejarReseña(scanner, producto);
                 }
             } else {
                 System.out.println("");
@@ -186,14 +186,14 @@ public class Menu {
             System.out.print("Ingrese el nombre del producto: ");
             String nombre = scanner.nextLine();
 
-            ArrayList<Producto> productosEncontrados = new ArrayList<>();
+            ArrayList<Producto> productos = new ArrayList<>();
             for (Emprendimiento emp : emprendimientos.values()) {
-                productosEncontrados.addAll(emp.buscarProductoPorNombre(nombre));
+                productos.addAll(productos);
             }
 
-            if (!productosEncontrados.isEmpty()) {
+            if (!productos.isEmpty()) {
                 System.out.println("Productos encontrados:");
-                for (Producto producto : productosEncontrados) {
+                for (Producto producto : productos) {
                     System.out.println(producto);
                 }
 
@@ -202,7 +202,7 @@ public class Menu {
                     System.out.println("");
                     System.out.println("¿Cuál es el código del producto que quieres calificar?");
                     String codigo = scanner.nextLine();
-                    Producto producto = productosEncontrados.stream()
+                    Producto producto = productos.stream()
                         .filter(p -> p.getCodigo().equals(codigo))
                         .findFirst().orElse(null);
 
@@ -226,12 +226,12 @@ public class Menu {
 
     private void buscarEmprendimientos(Scanner scanner) {
         System.out.print("Ingrese el nombre del emprendimiento: ");
-        String nombre = scanner.nextLine();
+        String nombreEmprendimiento = scanner.nextLine();
 
-        Emprendimiento emprendimiento = emprendimientos.get(nombre);
+        Emprendimiento emprendimiento = emprendimientos.get(nombreEmprendimiento);
 
         if (emprendimiento != null) {
-            System.out.println("Emprendimiento encontrado: " + emprendimiento);
+            System.out.println("Emprendimiento encontrado: " + emprendimiento.getNombreEmprendimiento());
 
             System.out.println("¿Deseas dejar una reseña para este emprendimiento? (s/n)");
             if (scanner.nextLine().equalsIgnoreCase("s")) {
@@ -250,7 +250,6 @@ public class Menu {
 
                 Reseña reseña = new Reseña(descripcion, calificacion);
                 registroReseña.agregarReseña(reseña);
-                emprendimiento.agregarReseña(reseña);
 
                 System.out.println("Reseña agregada con éxito.");
                 System.out.println("");
@@ -318,7 +317,7 @@ public class Menu {
             System.out.println("Elige una opción:");
 
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir nueva línea
+            scanner.nextLine(); 
 
             switch (opcion) {
                 case 1 -> agregarProducto(scanner, emprendedor);
@@ -333,12 +332,11 @@ public class Menu {
 
 
     private void agregarProducto(Scanner scanner, Emprendedor emprendedor) {
-        System.out.println("¿Qué tipo de producto vas a agregar? (s/p)");
+        System.out.println("¿Qué tipo de producto vas a agregar? (servicio/producto)");
         String tipoProducto = scanner.nextLine();
 
         System.out.print("Código: ");
         String codigo = scanner.nextLine();
-
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
 
@@ -348,11 +346,11 @@ public class Menu {
 
         System.out.print("Descripción: ");
         String descripcion = scanner.nextLine();
-
-        Producto producto = null;
-        if (tipoProducto.equalsIgnoreCase("s")) {
+        Producto producto = new Producto(codigo, nombre, precio, descripcion);
+        emprendedor.agregarProducto(codigo, nombre, precio, descripcion);
+        if (tipoProducto.equalsIgnoreCase("servicio")) {
             producto = new Servicio(codigo, nombre, precio, descripcion);
-        } else if(tipoProducto.equalsIgnoreCase("p")) {
+        } else if(tipoProducto.equalsIgnoreCase("producto")) {
             producto = new Producto(codigo, nombre, precio, descripcion);
         }
 
@@ -369,7 +367,7 @@ public class Menu {
             emprendimiento.eliminarProducto(código);
             System.out.println("Producto eliminado con éxito.");
         } else {
-            System.out.println("Emprendimiento no encontrado.");
+            System.out.println(" no encontrado.");
         }
     }
 

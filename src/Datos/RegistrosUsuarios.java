@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Persistencia;
+package Datos;
 
-import Persistencia.Cuenta;
+import Datos.Cuenta;
+import Persistencia.Cliente;
+import Persistencia.Emprendedor;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +24,6 @@ public class RegistrosUsuarios {
     public void setCuentas(Map<String, Cuenta> cuentas) {
         this.cuentas = cuentas;
     }
-     
-     
 
     public void registrarCliente(String cedula, String username, String password, String correoElectronico, int edad) {
         Cliente cliente = new Cliente(cedula, username, password, correoElectronico, edad);

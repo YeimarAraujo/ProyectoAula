@@ -4,10 +4,8 @@
  */
 package Persistencia;
 
-import Logica.Reseña;
-import Logica.Emprendimiento;
-import Logica.Producto;
-import Persistencia.Cuenta;
+import Datos.Cuenta;
+import Datos.Reseña;
 import java.util.ArrayList;
 
 /**
@@ -15,47 +13,18 @@ import java.util.ArrayList;
  * @author POWER
  */
 public class Emprendedor extends Cuenta {
-
-    private String nombreEmprendimiento;
-    private String nit;
-    private String direccion;
-    private Emprendimiento emprendimiento;
+    
     private ArrayList<Producto> productos;
     private ArrayList<Reseña> reseñas;
+    private ArrayList<Emprendimiento> emprendimientos;
 
     public Emprendedor(String cedula, String username, String password, String correoElectronico, int edad, String nombreEmprendimiento, String nit, String direccion) {
         super(cedula, username, password, correoElectronico, edad);
-        this.nombreEmprendimiento = nombreEmprendimiento;
-        this.nit = nit;
-        this.direccion = direccion;
-        this.emprendimiento = emprendimiento;
         this.productos = new ArrayList<>();
         this.reseñas = new ArrayList<>();
+        this.emprendimientos = new ArrayList<>();
     }
 
-    public String getNombreEmprendimiento() {
-        return nombreEmprendimiento;
-    }
-
-    public void setNombreEmprendimiento(String nombreEmprendimiento) {
-        this.nombreEmprendimiento = nombreEmprendimiento;
-    }
-
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
 
     public ArrayList<Reseña> getReseñas() {
         return reseñas;
@@ -63,14 +32,6 @@ public class Emprendedor extends Cuenta {
 
     public void setReseñas(ArrayList<Reseña> reseñas) {
         this.reseñas = reseñas;
-    }
-
-    public Emprendimiento getEmprendimiento() {
-        return emprendimiento;
-    }
-
-    public void setEmprendimiento(Emprendimiento emprendimiento) {
-        this.emprendimiento = emprendimiento;
     }
 
     public ArrayList<Producto> getProductos() {
@@ -81,14 +42,15 @@ public class Emprendedor extends Cuenta {
         this.productos = productos;
     }
 
-   
-
-    public void agregarProducto(Producto producto) {
-        productos.add(producto);
+    public void agregarProducto(String codigo,String nombre, double precio, String descripcion) {
+        Producto nuevoProducto = new Producto(codigo, nombre, precio, descripcion);
+        productos.add(nuevoProducto);
     }
 
     public void eliminarProducto(String codigo) {
-        productos.removeIf(p -> p.getCodigo().equals(codigo));
+        productos.removeIf(p -> {
+            return p.getCodigo().equals(codigo);
+        });
     }
 
     public void agregarReseña(Reseña reseña) {
@@ -111,19 +73,27 @@ public class Emprendedor extends Cuenta {
 
         return (double) total / reseñas.size();
     }
+    public void agregarEmprendimiento(Emprendimiento emprendimiento) {
+        emprendimientos.add(emprendimiento);
+    }
+    public Emprendimiento buscarEmprendimiento(String nombre) {
+        for (Emprendimiento emp : emprendimientos) {
+            if (emp.getNombreEmprendimiento().equals(nombre)) {
+                return emp;
+            }
+        }
+        return null;
+    }
+  
 
     @Override
     public String toString() {
         return "Emprendedor:"
-                + "NombreEmprendimiento='" + nombreEmprendimiento + '\''
-                + "Nit='" + nit + '\''
-                + "Direccion='" + direccion + '\''
-                + "Productos=" + productos.size()
-                + "Reseñas=" + reseñas.size()
                 + "Cedula='" + cedula + '\''
                 + "Username='" + username + '\''
                 + "CorreoElectronico='" + correoElectronico + '\''
                 + "Edad=" + edad
                 + '}';
     }
+
 }

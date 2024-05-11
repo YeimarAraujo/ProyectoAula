@@ -4,17 +4,45 @@
  */
 package Persistencia;
 
-import Persistencia.Cuenta;
+import Datos.Cuenta;
+import java.util.ArrayList;
 
 /**
  *
  * @author POWER
  */
 public class Cliente extends Cuenta{
+    private ArrayList<Producto>productos= new ArrayList<>();
+     private ArrayList<Emprendimiento>emprendimientos = new ArrayList<>();
     
     public Cliente(String cedula, String username, String password, String correoElectronico, int edad) {
         super(cedula, username, password, correoElectronico, edad);
     }
+     public Producto buscarProductoPorNombre(String nombreProducto) {
+        for (Producto producto : productos) {
+            if (producto.getNombre().equalsIgnoreCase(nombreProducto)) {
+                return producto;
+            }
+        }
+        return null; 
+    }
+       public Producto buscarProductoPorCodigo(String codigo) {
+        for (Producto producto : productos) {
+            if (producto.getCodigo().equals(codigo)) {
+                return producto;
+            }
+        }
+        return null;
+    }
+      public Emprendimiento buscarEmprendimiento(String nombre) {
+        for (Emprendimiento emp : emprendimientos) {
+            if (emp.getNombreEmprendimiento().equals(nombre)) {
+                return emp;
+            }
+        }
+        return null;
+    }
+     
 
     @Override
     public boolean verificarPassword(String password) {

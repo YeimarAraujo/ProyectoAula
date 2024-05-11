@@ -8,7 +8,7 @@ package Presentacion;
  *
  * @author POWER
  */
-public class ProyectoAula {
+public class Principal {
 
     /**
      * @param args the command line arguments

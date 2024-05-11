@@ -110,16 +110,16 @@ public class Emprendedor extends Cuenta {
 
     @Override
     public String toString() {
-        return "Emprendedor{"
-                + "nombreEmprendimiento='" + nombreEmprendimiento + '\''
-                + ", nit='" + nit + '\''
-                + ", direccion='" + direccion + '\''
-                + ", productos=" + productos.size()
-                + ", reseñas=" + reseñas.size()
-                + ", cedula='" + cedula + '\''
-                + ", username='" + username + '\''
-                + ", correoElectronico='" + correoElectronico + '\''
-                + ", edad=" + edad
+        return "Emprendedor:"
+                + "NombreEmprendimiento='" + nombreEmprendimiento + '\''
+                + "Nit='" + nit + '\''
+                + "Direccion='" + direccion + '\''
+                + "Productos=" + productos.size()
+                + "Reseñas=" + reseñas.size()
+                + "Cedula='" + cedula + '\''
+                + "Username='" + username + '\''
+                + "CorreoElectronico='" + correoElectronico + '\''
+                + "Edad=" + edad
                 + '}';
     }
 }

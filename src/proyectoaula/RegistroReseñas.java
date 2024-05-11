@@ -20,17 +20,4 @@ public class RegistroReseñas {
     public ArrayList<Reseña> obtenerReseñas() {
         return reseñas;
     }
-
-    public double obtenerPromedioCalificaciones() {
-        if (reseñas.isEmpty()) {
-            return 0;
-        }
-
-        int total = 0;
-        for(Reseña reseña : reseñas) {
-            total += reseña.getCalificacion();
-        }
-
-        return (double) total / reseñas.size();
-    }   
 }

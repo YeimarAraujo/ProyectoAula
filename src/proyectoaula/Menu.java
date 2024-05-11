@@ -347,18 +347,6 @@ public class Menu {
             producto = new Producto(codigo, nombre, precio, descripcion);
         }
 
-        if (producto != null) {
-            Emprendimiento emprendimiento = emprendimientos.get(emprendedor.getUsername());
-            if (emprendimiento == null) {
-                emprendimiento = new Emprendimiento(emprendedor.getUsername());
-                emprendimientos.put(emprendedor.getUsername(), emprendimiento);
-            }
-
-            emprendimiento.agregarProducto(producto);
-            System.out.println("Producto agregado con éxito.");
-        } else {
-            System.out.println("Tipo de producto no válido.");
-        }
     }
 
     private void eliminarProducto(Scanner scanner, Emprendedor emprendedor) {
@@ -373,14 +361,6 @@ public class Menu {
             System.out.println("Producto eliminado con éxito.");
         } else {
             System.out.println("Emprendimiento no encontrado.");
-        }
-    }
-       private void verProductos(Emprendedor emprendedor) {
-        ArrayList<Producto> productos = emprendedor.getProductos();
-        if (productos.isEmpty()) {
-            System.out.println("No hay productos.");
-        } else {
-            productos.forEach(System.out::println);
         }
     }
 

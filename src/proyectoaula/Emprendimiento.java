@@ -11,37 +11,9 @@ import java.util.ArrayList;
  * @author POWER
  */
 public class Emprendimiento implements GestionProductos {
-     private String nombre;
     private ArrayList<Producto> productos = new ArrayList<>();
     private ArrayList<Reseña> reseñas = new ArrayList<>();
 
-    public Emprendimiento(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public ArrayList<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
-    }
-
-    public ArrayList<Reseña> getReseñas() {
-        return reseñas;
-    }
-
-    public void setReseñas(ArrayList<Reseña> reseñas) {
-        this.reseñas = reseñas;
-    }
 
      @Override
     public void agregarProducto(Producto producto) {

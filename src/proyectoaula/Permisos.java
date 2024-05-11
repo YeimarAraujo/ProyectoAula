@@ -10,12 +10,12 @@ package proyectoaula;
  */
 public class Permisos {
     private boolean buscarProductos;
-    private boolean crearProductos;
+    private boolean agregarProductos;
     private boolean dejarReseñas;
 
-    public Permisos(boolean buscarProductos, boolean crearProductos, boolean dejarReseñas) {
+    public Permisos(boolean buscarProductos, boolean crearProductos, boolean agregarReseñas) {
         this.buscarProductos = buscarProductos;
-        this.crearProductos = crearProductos;
+        this.agregarProductos = crearProductos;
         this.dejarReseñas = dejarReseñas;
     }
 
@@ -23,8 +23,8 @@ public class Permisos {
         return buscarProductos;
     }
 
-    public boolean crearProductos() {
-        return crearProductos;
+    public boolean agregarProductos() {
+        return agregarProductos;
     }
 
     public boolean dejarReseñas() {

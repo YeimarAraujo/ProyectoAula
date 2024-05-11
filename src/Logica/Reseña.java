@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyectoaula;
+package Logica;
 
 import java.util.Date;
 
@@ -35,9 +35,8 @@ public class Reseña {
 
     @Override
     public String toString() {
-        return "Resena" + 
+        return "Reseña" + 
                 "Descripcion=" + descripcion + 
-                "Calificacion=" + calificacion +
                 "Fecha=" + fecha + '}';
     }
 

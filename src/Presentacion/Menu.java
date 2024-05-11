@@ -2,8 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyectoaula;
+package Presentacion;
 
+import Persistencia.Cliente;
+import Persistencia.Emprendedor;
+import Logica.Emprendimiento;
+import Logica.Producto;
+import Logica.RegistroReseñas;
+import Logica.Reseña;
+import Logica.Servicio;
+import Persistencia.RegistrosUsuarios;
+import Persistencia.Cuenta;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
